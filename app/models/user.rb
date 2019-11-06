@@ -59,13 +59,13 @@ class User < ApplicationRecord
       puts(auth)
       provider = auth['provider'] == "bn_launcher" ? auth['info']['customer'] : auth['provider']
       find_or_initialize_by(social_uid: auth['uid'], provider: provider).tap do |u|
-        u.name = auth_name(auth) unless u.name
-        u.username = auth_username(auth) unless u.username
+        u.name = auth_name(auth)
+        u.username = auth_username(auth)
         u.email = auth_email(auth)
         u.image = auth_image(auth)
         u.email_verified = true
-        puts(u.email)
-        puts(u.name)
+        puts(auth_email(auth))
+        puts(auth_name(auth))
         u.save!
       end
     end
