@@ -64,6 +64,8 @@ class User < ApplicationRecord
         u.email = auth_email(auth)
         u.image = auth_image(auth)
         u.email_verified = true
+        puts(u.email)
+        puts(u.name)
         u.save!
       end
     end
@@ -77,7 +79,7 @@ class User < ApplicationRecord
       when :microsoft_office365
         auth['info']['display_name']
       when :cas
-        auth['extra']['sn']
+        auth['extra']['givenName'] + ' '+ auth['extra']['sn']
       else
         auth['info']['name']
       end
@@ -99,7 +101,7 @@ class User < ApplicationRecord
     def auth_email(auth)
       case auth['provider']
       when :cas
-        auth['extra']['mail']
+        auth['info']['nickname'] + '@ut.ac.ir'
       else
         auth['info']['email']
       end
