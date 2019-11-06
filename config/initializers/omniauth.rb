@@ -38,7 +38,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     Rails.application.config.providers << :ldap
 
     provider :ldap,
-      host: 'https://auth4.ut.ac.ir/cas/login',
+      host: 'https://auth.ut.ac.ir/cas/login',
       port: '8443' || '389',
       method: ENV['LDAP_METHOD'].blank? ? :plain : ENV['LDAP_METHOD'].to_sym,
       allow_username_or_email_login: true,
@@ -65,7 +65,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       Rails.application.config.providers << :cas
 
       provider :cas,
-        host: 'auth4.ut.ac.ir',
+        host: 'auth.ut.ac.ir',
         port: '8443',
         login_url: '/cas/login',
         logout_url: '/cas/logout',
