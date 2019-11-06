@@ -64,8 +64,7 @@ class User < ApplicationRecord
         u.email = auth_email(auth)
         u.image = auth_image(auth)
         u.email_verified = true
-        puts(auth_email(auth))
-        puts(auth_name(auth))
+	puts(auth['extra']['eduPersonAffiliation'])
         u.save!
       end
     end
